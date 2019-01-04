@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 public class ShellExecutor {
 
 	// Shell files to control TomCat.
-	public static final String TOMCAT_START = "/startup.sh";
-	public static final String TOMCAT_SHUTDOWN = "/shutdown.sh";
+	public static final String TOMCAT_START = "/bin/startup.sh";
+	public static final String TOMCAT_SHUTDOWN = "/bin/shutdown.sh";
 	
 	/**
 	 * It take path through parameter and 
@@ -22,10 +22,10 @@ public class ShellExecutor {
 	 * @param path Shell File Path
 	 * @return output of execution
 	 */
-	public static String executeShellFile(String path) throws IOException {
+	public static String executeShellFile(String commandType, PathHelper pathHelper) throws IOException {
 
 		// Starting a process..
-		ProcessBuilder pb = new ProcessBuilder(path);
+		ProcessBuilder pb = new ProcessBuilder(pathHelper.getPath()+commandType);
 		Process p = pb.start();
 		
 		// Reading output from process.
